@@ -2,8 +2,9 @@ import React from 'react'
 import SignedInLinks from './signedInLinks'
 // import SignedOutLinks from './signedOutLinks'
 import { Container, Navbar, NavbarBrand } from 'reactstrap';
-import './navbar.scss';
+import '../../stylesheets/navbar.scss';
 import { FaTruck } from 'react-icons/fa';
+import messages from '../../en.messages';
 
 const MyNavbar = (props) => {
 //const { auth, profile } = props;
@@ -13,7 +14,7 @@ const MyNavbar = (props) => {
       <Container>
       <div className="iconAndTitle">
           <div className="FaTruck"> <FaTruck /></div>
-          <NavbarBrand href="/">Deliver App</NavbarBrand>
+          <NavbarBrand href="/">{messages.documentTitle}</NavbarBrand>
       </div>
       <SignedInLinks />
       {/* {links} */}

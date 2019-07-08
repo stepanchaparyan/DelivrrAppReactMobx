@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Input } from 'reactstrap';
-import './updateProduct.scss';
+import '../../stylesheets/updateProduct.scss';
 import { Redirect } from 'react-router-dom';
 
 class UpdateProduct extends Component {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Button, FormGroup } from 'reactstrap';
-import './addProduct.scss';
+import '../../stylesheets/addProduct.scss';
 import { ValidationForm, TextInput } from 'react-bootstrap4-form-validation';
 import { DebounceInput } from 'react-debounce-input';
 

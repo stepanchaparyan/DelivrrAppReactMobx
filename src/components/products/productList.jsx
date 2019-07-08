@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Table, Button } from 'reactstrap';
-import './productList.scss';
+import '../../stylesheets/productList.scss';
 import UpdateProduct from './updateProduct';
 
 class ProductList extends Component {

@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Table, Button } from 'reactstrap';
-import './shopList.scss';
+import '../../stylesheets/shopList.scss';
 import UpdateShop from './updateShop';
 import store from '../../store/store';
 import { observer } from 'mobx-react';

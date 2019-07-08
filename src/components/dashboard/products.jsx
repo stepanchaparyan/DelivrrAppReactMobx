@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ProductList from '../products/productList';
 // import Notifications from './notifications';
 // import { Redirect } from 'react-router-dom';
-import './products.scss';
+import '../../stylesheets/products.scss';
 import AddProduct from '../products/addProduct';
 
 class Products extends Component {

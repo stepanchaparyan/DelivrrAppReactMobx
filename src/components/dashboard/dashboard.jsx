@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import { Redirect } from 'react-router-dom';
-import './dashboard.scss';
+import '../../stylesheets/dashboard.scss';
 import BG from '../../assets/bg2.jpg';
 
 class Dashboard extends Component {
