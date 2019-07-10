@@ -1,4 +1,6 @@
 import { observable, action, when, autorun } from 'mobx';
+import messagesEN from '../en.messages';
+import messagesHY from '../hy.messages';
 
 class Shop {
   @observable shops = [
@@ -20,6 +22,16 @@ class Shop {
   @action updateShop(data, updatedVersion, id) { 
     const shop = this.shops.filter(shop => shop.id === id);
     shop[0][data] = updatedVersion;
+  }
+
+  @observable language = 'en';
+
+  @action changeLanguageToEN() {
+    this.language = 'en';
+  }
+
+  @action changeLanguageToHY() {
+    this.language = 'hy';
   }
 
 }

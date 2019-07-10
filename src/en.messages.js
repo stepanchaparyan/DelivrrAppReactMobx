@@ -5,7 +5,7 @@
 // See http://formatjs.io/ for more info.
 
 module.exports = {
-    documentTitle: 'DeliverApp',
+    projectTitle: 'DeliverApp',
     navbar: {
         shops: 'Shops',
         products: 'Products'
