@@ -30,14 +30,14 @@ class MyNavbar extends Component {
             <NavbarBrand href="/">
               <FormattedMessage
                   id="projectTitle"
-                  defaultMessage='hy'
+                  defaultMessage='projectTitle'
               />
               </NavbarBrand>
         </div>
         <SignedInLinks />
         {/* {links} */}
-        {/* <button onClick={this.changeLanguageToHY}>AM</button>
-        <button onClick={this.changeLanguageToEN}>EN</button> */}
+        <button onClick={this.changeLanguageToHY}>AM</button>
+        <button onClick={this.changeLanguageToEN}>EN</button>
         </Container>
       </Navbar>
     )

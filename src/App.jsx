@@ -17,12 +17,12 @@ import messagesHY from './hy.messages';
 import {addLocaleData, IntlProvider} from 'react-intl';
 import en from 'react-intl/locale-data/en';
 import hy from 'react-intl/locale-data/hy';
-addLocaleData(en);
-addLocaleData(hy);
+addLocaleData([...en]);
+addLocaleData([...hy]);
 
 const messages = {
-  'en': messagesEN,
-  'hy': messagesHY
+  en: messagesEN,
+  hy: messagesHY
 };
 
 var createBrowserHistory = require('history').createBrowserHistory;
@@ -32,12 +32,11 @@ const history = syncHistoryWithStore(browserHistory, routingStore);
 
 @observer
 class App extends Component {
+
   render() {
-    this.language = store.language; 
-    console.log('index ', messages[this.language]);
-    
+    let lang = store.language;
     return (
-      <IntlProvider locale={this.language} messages={messages[this.language]}>
+      <IntlProvider locale={lang} messages={messages[lang]} key={lang}>
           <Router history={history}>
             <div className="App">
               <Navbar />
