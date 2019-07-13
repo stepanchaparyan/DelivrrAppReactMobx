@@ -36,8 +36,8 @@ class MyNavbar extends Component {
         </div>
         <SignedInLinks />
         {/* {links} */}
-        <button onClick={this.changeLanguageToHY}>AM</button>
-        <button onClick={this.changeLanguageToEN}>EN</button>
+        <button id='btnLang' onClick={this.changeLanguageToHY}>Arm</button>
+        <button id='btnLang' onClick={this.changeLanguageToEN}>Eng</button>  
         </Container>
       </Navbar>
     )
