@@ -1,5 +1,5 @@
 module.exports = {
-    projectTitle: 'DeliverApp',
+    projectTitle: 'Delivery App',
     shops: 'Shops',
     products: 'Products',
 
