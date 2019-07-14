@@ -49,6 +49,7 @@ class AddProduct extends Component {
                     }}
                     value={this.state.name}
                     onChange={this.handleChange}
+                    autoFocus
                 />
         </FormGroup>
         <FormGroup>
