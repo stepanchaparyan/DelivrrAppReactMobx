@@ -14,7 +14,7 @@ class Shops extends Component {
       <DocumentTitle title='Delivery Shops'>
         <div className="shopPage">
           <div className="shopListTitle">{messages.shopsPage.title}</div>
-            <ShopList props={this.props}/>
+            <ShopList />
             <hr />
             <hr />
             <div className="shopListTitle">{messages.shopsPage.addNewShop}</div>

@@ -4,6 +4,7 @@ import '../../stylesheets/updateShop.scss';
 //import { Redirect } from 'react-router-dom';
 import store from '../../store/store';
 import { observer } from 'mobx-react';
+import PropTypes from 'prop-types'; 
 
 @observer
 class UpdateShop extends Component {
@@ -13,6 +14,17 @@ class UpdateShop extends Component {
       [props.data]: ''
     }
   }
+
+  static propTypes = {
+      id: PropTypes.number,
+      name: PropTypes.string,
+      shop: PropTypes.shape ({
+        id: PropTypes.number,
+        name: PropTypes.string,
+        address: PropTypes.string,
+        city: PropTypes.string,
+      })  
+    }
   
   handleChange = (e) => {
     this.setState({

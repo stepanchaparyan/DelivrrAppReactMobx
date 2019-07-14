@@ -1,6 +1,4 @@
 import { observable, action, when, autorun } from 'mobx';
-import messagesEN from '../en.messages';
-import messagesHY from '../hy.messages';
 
 class Shop {
   @observable shops = [

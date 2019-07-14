@@ -24,7 +24,9 @@ class AddShop extends Component {
   }
   handleSubmit = (e) => {
     e.preventDefault();
-    this.state.id = uniqid();
+    this.setState({
+      id: uniqid
+    })
     store.addShop(this.state);
     this.setState({
       id: '',
