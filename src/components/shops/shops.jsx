@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import ShopList from '../shops/shopList';
 import AddShop from '../shops/addShop';
 import '../../stylesheets/shops.scss';
-import messages from '../../en.messages';
 // import Notifications from './notifications';
 // import { Redirect } from 'react-router-dom';
 import DocumentTitle from 'react-document-title';
+import {FormattedMessage} from 'react-intl';
 
 class Shops extends Component {
   render() {
@@ -13,11 +13,21 @@ class Shops extends Component {
     return (
       <DocumentTitle title='Delivery Shops'>
         <div className="shopPage">
-          <div className="shopListTitle">{messages.shopsPage.title}</div>
+          <div className="shopListTitle">
+            <FormattedMessage
+                  id="shopsList"
+                  defaultMessage='Shops List'
+            />
+          </div>
             <ShopList />
             <hr />
             <hr />
-            <div className="shopListTitle">{messages.shopsPage.addNewShop}</div>
+            <div className="shopListTitle">
+              <FormattedMessage
+                    id="addNewShop"
+                    defaultMessage='Add new shop'
+              />
+            </div>
             <hr />
             <hr />
             <AddShop />

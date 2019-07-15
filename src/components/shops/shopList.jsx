@@ -2,8 +2,9 @@ import React, { Component, Fragment } from 'react';
 import { Table, Button } from 'reactstrap';
 import '../../stylesheets/shopList.scss';
 import UpdateShop from './updateShop';
-import store from '../../store/store';
+import store from '../../store/shopsStore';
 import { observer } from 'mobx-react';
+import messages from '../../en.messages';
 
 @observer
 class ShopList extends Component {
@@ -33,9 +34,9 @@ class ShopList extends Component {
           <thead>
             <tr>
                 <th className="firstTD">#</th>
-                <th>Name</th>
-                <th>City</th>
-                <th>Address</th> 
+                <th>{messages.name}</th>
+                <th>{messages.city}</th>
+                <th>{messages.address}</th> 
             </tr>
           </thead>
           <tbody> 
@@ -49,7 +50,7 @@ class ShopList extends Component {
                     <td>{shop.address}</td>
                     <td id={i} className="x" onClick={this.deleteShop}>x</td>
                     <td id="tdButton">
-                      <Button className="btnUpdate" outline color="info" id={i} onClick={this.toggle}>Update</Button>
+                      <Button className="btnUpdate" outline color="info" id={i} onClick={this.toggle}>{messages.update}</Button>
                     </td>
                   </tr>
                   { this.state.show && i===this.state.id ? 

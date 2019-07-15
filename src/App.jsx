@@ -10,7 +10,7 @@ import Products from './components/products/products';
 // import SignIn from './components/auth/signIn';
 // import SignUp from './components/auth/signUp';
 // import ForgotPassword from './components/auth/forgotPassword';
-import store from './store/store';
+import store from './store/languagesStore';
 
 import messagesEN from './en.messages';
 import messagesHY from './hy.messages';

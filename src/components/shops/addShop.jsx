@@ -4,8 +4,9 @@ import '../../stylesheets/addShops.scss';
 import { ValidationForm, TextInput } from 'react-bootstrap4-form-validation';
 import { DebounceInput } from 'react-debounce-input';
 import { observer } from 'mobx-react';
-import store from '../../store/store';
+import store from '../../store/shopsStore';
 import uniqid from 'uniqid';
+import messages from '../../en.messages';
 
 @observer
 class AddShop extends Component {
@@ -49,7 +50,7 @@ class AddShop extends Component {
                     name="name"
                     id="name"
                     type="text"
-                    placeholder="name"
+                    placeholder={messages.name}
                     required
                     pattern=".{1,16}"
                     errorMessage={{
@@ -67,7 +68,7 @@ class AddShop extends Component {
                     name="city"
                     id="city" 
                     type="text"                       
-                    placeholder="city"
+                    placeholder={messages.city}
                     required
                     pattern=".{1,16}"
                     errorMessage={{
@@ -84,7 +85,7 @@ class AddShop extends Component {
                     name="address"
                     type="text" 
                     id="address"
-                    placeholder="address"
+                    placeholder={messages.address}
                     pattern=".{0,16}"
                     errorMessage={{
                         pattern: "Address should be at maximum 16 characters long"
@@ -94,7 +95,7 @@ class AddShop extends Component {
                     />
         </FormGroup>
         <FormGroup></FormGroup>
-        <Button outline color="info">Add</Button>
+        <Button outline color="info">{messages.add}</Button>
     </ValidationForm>
     )
   }

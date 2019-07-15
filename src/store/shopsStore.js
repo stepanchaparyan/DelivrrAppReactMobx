@@ -1,6 +1,6 @@
 import { observable, action, when, autorun } from 'mobx';
 
-class Shop {
+class Shops {
   @observable shops = [
     { id: 1, name: 'Nairi', city: 'Vanadzor', address: 'Aghayan 45' },
     { id: 2, name: 'Arevik', city: 'Vanadzor', address: 'Tigran Mets 8' },
@@ -22,18 +22,8 @@ class Shop {
     shop[0][data] = updatedVersion;
   }
 
-  @observable language = 'en';
-
-  @action changeLanguageToEN() {
-    this.language = 'en';
-  }
-
-  @action changeLanguageToHY() {
-    this.language = 'hy';
-  }
-
 }
-const shop = new Shop();
+const shop = new Shops();
 export default shop;
 
 // when (

@@ -5,6 +5,7 @@ import ProductList from '../products/productList';
 import '../../stylesheets/products.scss';
 import AddProduct from '../products/addProduct';
 import DocumentTitle from 'react-document-title';
+import {FormattedMessage} from 'react-intl';
 
 class Products extends Component {
   render() {
@@ -13,11 +14,21 @@ class Products extends Component {
     return (
       <DocumentTitle title='Delivery Products'>
         <div className="productPage">
-          <div className="productListTitle">Product list</div>
+            <div className="productListTitle">
+            <FormattedMessage
+                  id="productsList"
+                  defaultMessage='Products List'
+            />
+            </div>
             <ProductList />
             <hr />
             <hr />
-            <div className="productListTitle">Add new Product</div>
+            <div className="productListTitle">
+            <FormattedMessage
+                  id="addNewProduct"
+                  defaultMessage='Add new product'
+            />            
+            </div>
             <hr />
             <hr />
             <AddProduct />

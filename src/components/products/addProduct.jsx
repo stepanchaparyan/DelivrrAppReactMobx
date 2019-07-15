@@ -3,9 +3,15 @@ import { Button, FormGroup } from 'reactstrap';
 import '../../stylesheets/addProduct.scss';
 import { ValidationForm, TextInput } from 'react-bootstrap4-form-validation';
 import { DebounceInput } from 'react-debounce-input';
+import { observer } from 'mobx-react';
+import store from '../../store/productsStore';
+import uniqid from 'uniqid';
+import messages from '../../en.messages';
 
+@observer
 class AddProduct extends Component {
   state = {
+    id: '',
     name: '',
     price: '',
     quantity: ''
@@ -17,16 +23,22 @@ class AddProduct extends Component {
       [e.target.id]: e.target.value
     })
   }
+
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.addProduct(this.state);
     this.setState({
+      id: uniqid
+    })
+    store.addProduct(this.state);
+    this.setState({
+        id: '',
         name: '',
         price: '',
         quantity: ''
     });
     this.resetForm();
   }
+
   resetForm = () => {
     let formRef = this.formRef.current;
     formRef.resetValidationState(this.state.clearInputOnReset);
@@ -40,7 +52,7 @@ class AddProduct extends Component {
                     name="name"
                     id="name"
                     type="text"
-                    placeholder="name"
+                    placeholder={messages.name}
                     required
                     pattern=".{1,24}"
                     errorMessage={{
@@ -58,7 +70,7 @@ class AddProduct extends Component {
                     name="price"
                     id="price" 
                     type="number"                       
-                    placeholder="price"
+                    placeholder={messages.price}
                     required
                     pattern=".{1,16}"
                     errorMessage={{
@@ -75,7 +87,7 @@ class AddProduct extends Component {
                     name="quantity"
                     id="quantity" 
                     type="number"                       
-                    placeholder="quantity"
+                    placeholder={messages.quantity}
                     required
                     pattern=".{1,16}"
                     errorMessage={{
@@ -86,7 +98,7 @@ class AddProduct extends Component {
                     onChange={this.handleChange}
                     />
         </FormGroup>    
-        <Button outline color="info">Add</Button>
+        <Button outline color="info">{messages.add}</Button>
     </ValidationForm>
     )
   }

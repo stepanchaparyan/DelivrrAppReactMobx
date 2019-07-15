@@ -5,7 +5,7 @@ import { Container, Navbar, NavbarBrand } from 'reactstrap';
 import '../../stylesheets/navbar.scss';
 import { FaTruck } from 'react-icons/fa';
 import {FormattedMessage} from 'react-intl';
-import store from '../../store/store';
+import store from '../../store/languagesStore';
 import { observer } from 'mobx-react';
 
 @observer
