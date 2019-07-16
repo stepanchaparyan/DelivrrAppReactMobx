@@ -32,11 +32,13 @@ class ShopList extends Component {
     return ( 
         <Table striped>
           <thead>
-            <tr>
+            <tr id='headtr'>
                 <th className="firstTD">#</th>
                 <th>{messages.name}</th>
                 <th>{messages.city}</th>
                 <th>{messages.address}</th> 
+                <th> </th>
+                <th> </th>
             </tr>
           </thead>
           <tbody> 
