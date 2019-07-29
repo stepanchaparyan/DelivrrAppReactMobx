@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import './auth.scss'
+import '../../stylesheets/auth.scss'
 import { ValidationForm, TextInput, TextInputGroup } from 'react-bootstrap4-form-validation';
 import validator from 'validator';
 import { FaEye } from 'react-icons/fa';
 import logo from '../../assets/logo.png';
 import { DebounceInput } from 'react-debounce-input';
 import { Button } from 'reactstrap';
+import { observer } from 'mobx-react';
+import firebase from '../../config/fbConfig';
 
+@observer
 class SignUp extends Component {
   state = {
     email: '',
@@ -23,14 +26,23 @@ class SignUp extends Component {
   }
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.signUp(this.state);
+
+    firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+    .then((u) => { 
+      document.getElementById("wrongUser").style.display = 'none';
+    })
+    .catch((error) => {
+      this.text = error.message;
+      document.getElementById("wrongUser").style.display = 'block';
+    });
   }
+
   showhidepass = (e) => {
     this.state.type === 'password' ? this.setState({type: 'text'}) : this.setState({type: 'password'})
   }
   render() {
-    const { auth, authError } = this.props;
-    if (auth.uid) return <Redirect to='/' /> 
+    const { user } = this.props;
+    if (user) return <Redirect to='/' /> 
     return (
       <div className="loginContainer">
       <div className="formSignUp">
@@ -49,7 +61,7 @@ class SignUp extends Component {
                    validator={validator.isEmail}
                    errorMessage={{ validator: "Please enter a valid email" }}
                    value={this.state.email}
-                   onChange={this.handleChange}
+                   onChange={this.handleChange}                   
                />
            </div>
            <div className="form-group">
@@ -68,6 +80,7 @@ class SignUp extends Component {
                    value={this.state.password}
                    onChange={this.handleChange}
                    append={<div id="eye" onClick={this.showhidepass}><FaEye /></div>}
+                   autoComplete='true'
                />
            </div>
 
@@ -107,8 +120,8 @@ class SignUp extends Component {
                />
            </div>
            <div id="wrongUser">
-               { authError ? <p>{authError}</p> : null }
-           </div>
+                { !user ? <p>{'DDDDDDDDDDDDDThe password is invalid or the user does not have a password'}</p> : null }
+            </div>
            <div className="form-group" id="btn">
                 <Button className="btnSignIn" size="lg" block color="info">Submit</Button>
            </div>

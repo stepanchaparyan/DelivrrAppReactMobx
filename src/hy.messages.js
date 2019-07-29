@@ -6,6 +6,7 @@ module.exports = {
     addNewProduct: 'Ավելացնել նոր ապրանք',
     shopsList: 'Խանութների ցանկ',
     addNewShop: 'Ավելացնել նոր խանութ',
+    signOut: 'Ելք',
     
     shopsPage:{
         title: 'Shops list',

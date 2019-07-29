@@ -16,7 +16,7 @@ module.exports = {
     update: 'Update',
     add: 'Add',
     loadingProject: 'Loading project ...',
-
+    signOut: 'Sign Out',
 
 
     shopsPage:{

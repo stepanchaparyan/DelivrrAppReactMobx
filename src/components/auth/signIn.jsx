@@ -1,18 +1,22 @@
 import React, { Component } from 'react'
 import { Redirect, Link } from 'react-router-dom'
-import './auth.scss'
+import '../../stylesheets/auth.scss'
 import { ValidationForm, TextInput, TextInputGroup } from 'react-bootstrap4-form-validation';
 import validator from 'validator';
 import { FaEye } from 'react-icons/fa';
 import logo from '../../assets/logo.png';
 import { DebounceInput } from 'react-debounce-input';
 import { Button } from 'reactstrap';
+import firebase from '../../config/fbConfig';
+import { observer } from 'mobx-react';
 
+@observer
 class SignIn extends Component {
   state = {
     email: '',
     password: '',
-    type: 'password'
+    type: 'password',
+    error: 'fbsfbsf'
   }
   handleChange = (e) => {
     this.setState({
@@ -21,15 +25,22 @@ class SignIn extends Component {
   }
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.signIn(this.state)
+    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+    .then((u) => { 
+      document.getElementById("wrongUser").style.display = 'none';
+    })
+    .catch((error) => {
+      this.text = error.message;
+      document.getElementById("wrongUser").style.display = 'block';
+    });
   }
   showhidepass = (e) => {
     this.state.type === 'password' ? this.setState({type: 'text'}) : this.setState({type: 'password'})
   }
 
   render() {
-    const { authError, auth } = this.props;
-    if (auth.uid) return <Redirect to='/' /> 
+    const { user } = this.props;
+    if (user) return <Redirect to='/' /> 
     return (
       <div className="loginContainer">
        <div className="formSignIn">
@@ -67,10 +78,11 @@ class SignIn extends Component {
                     value={this.state.password}
                     onChange={this.handleChange}
                     append={<div id="eye" onClick={this.showhidepass}><FaEye /></div>}
+                    autoComplete='true'
                 />
             </div>
             <div id="wrongUser">
-                { authError ? <p>{authError}</p> : null }
+                { !user ? <p>{'The password is invalid or the user does not have a password'}</p> : null }
             </div>
             <div className="form-group" id="btn">
               <Button className="btnSignIn" size="lg" block color="info">Submit</Button>

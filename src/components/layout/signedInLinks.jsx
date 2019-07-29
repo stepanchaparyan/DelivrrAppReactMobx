@@ -1,12 +1,14 @@
-import React from 'react'
+import React, {Component} from 'react'
 import { NavLink } from 'react-router-dom'
-import { Nav } from 'reactstrap';
+import { Nav, NavItem } from 'reactstrap';
 import '../../stylesheets/navbar.scss';
 import {FormattedMessage} from 'react-intl';
+import { observer } from 'mobx-react';
 
- const SignedInLinks = (props) => {
-  return (
-    <div>
+@observer
+class SignedInLinks extends Component {
+  render () {
+    return (
       <Nav pills>
         <NavLink exact to='/shops' className="text-white nav-text">
           <FormattedMessage
@@ -20,11 +22,16 @@ import {FormattedMessage} from 'react-intl';
               defaultMessage='Products'
           />
         </NavLink>
-        {/* <NavItem onClick={props.signOut} className="text-white nav-text">Sign Out</NavItem> */}
-        {/* <NavLink exact to='/' className="text-white nav-text profileName">{props.profile.firstName}</NavLink> */}
+        <NavItem onClick={this.props.signOut} className="text-white nav-text">
+          <FormattedMessage
+                id="signOut"
+                defaultMessage='Sign Out'
+          />
+        </NavItem>
+        <NavLink exact to='/' className="text-white nav-text profileName">{this.props.user.email}</NavLink>
       </Nav>
-    </div>
-  )
+    )
+  }
 }
 
 export default SignedInLinks

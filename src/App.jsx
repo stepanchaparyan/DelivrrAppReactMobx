@@ -7,10 +7,11 @@ import Navbar from './components/layout/navbar';
 import Dashboard from './components/dashboard/dashboard';
 import Shops from './components/shops/shops';
 import Products from './components/products/products';
-// import SignIn from './components/auth/signIn';
-// import SignUp from './components/auth/signUp';
-// import ForgotPassword from './components/auth/forgotPassword';
+import SignIn from './components/auth/signIn';
+import SignUp from './components/auth/signUp';
+import ForgotPassword from './components/auth/forgotPassword';
 import store from './store/languagesStore';
+import firebase from './config/fbConfig';
 
 import messagesEN from './en.messages';
 import messagesHY from './hy.messages';
@@ -32,14 +33,66 @@ const history = syncHistoryWithStore(browserHistory, routingStore);
 
 @observer
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: {},
+    }
+  }
+
+  componentDidMount() {
+    this.authListener();
+  }
+
+  authListener() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ user: user });
+      } else {
+        this.setState({ user: null });
+      }
+    });
+  }
+
 
   render() {
     let lang = store.language;
-    return (
-      <IntlProvider locale={lang} messages={messages[lang]} key={lang}>
+    return ( 
+      <>
+      {!this.state.user ? 
+      ( <IntlProvider locale={lang} messages={messages[lang]} key={lang}>
+          <Router history={history}>
+            <>
+            <Navbar />
+            <Route 
+                exact
+                path='/'
+                render={() => 
+                <Dashboard />}
+            />
+            <Route
+                path='/signIn'
+                render={() => 
+                <SignIn />}
+            />
+            <Route
+                path='/forgotPassword'
+                render={() => 
+                <ForgotPassword />}
+            />
+            <Route
+                path='/signUp'
+                render={() => 
+                <SignUp />}
+            />
+            </>      
+          </Router>
+        </IntlProvider>
+      ) : 
+      (<IntlProvider locale={lang} messages={messages[lang]} key={lang}>
           <Router history={history}>
             <div className="App">
-              <Navbar />
+              <Navbar user={this.state.user} />
               <Switch>  
                   <Route 
                       exact
@@ -66,7 +119,10 @@ class App extends Component {
             </div>
           </Router>
       </IntlProvider>
+      )}
+     </>  
     );
+   
   }
 }
 

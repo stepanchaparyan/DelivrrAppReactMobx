@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { ValidationForm, TextInput } from 'react-bootstrap4-form-validation';
 import validator from 'validator';
-import './auth.scss';
+import '../../stylesheets/auth.scss';
 import logo from '../../assets/logo.png';
 import SweetAlert from 'sweetalert2-react';
 import 'sweetalert2/dist/sweetalert2.css';
 import { Button } from 'reactstrap';
+import firebase from '../../config/fbConfig';
+import { observer } from 'mobx-react';
 
+@observer
 class ForgotPasword extends Component {
     state = {
         email: ''
@@ -20,8 +23,11 @@ class ForgotPasword extends Component {
 
     sendEmail = (e) => {
         e.preventDefault();
-        this.props.resetPassword(this.state.email);
-        this.setState({ show: true });
+        firebase.auth.sendPasswordResetEmail(this.state.email).then((u) => {
+            document.getElementById("wrongEmail").style.visibility = 'hidden';
+        }).catch((error) => {
+            document.getElementById("wrongEmail").style.visibility = 'visible';
+        });
     }
 
     render () {
@@ -44,6 +50,7 @@ class ForgotPasword extends Component {
                                 onChange={this.handleChange}
                     />
                 </div>
+                <div id="wrongEmail">Please enter a valid email</div>
                 <SweetAlert
                     show={this.state.show}
                     title="GOOD!"            

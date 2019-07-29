@@ -4,11 +4,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.scss';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-// import fbConfig from './config/fbConfig';
 import { Provider } from 'mobx-react';
 
 ReactDOM.render(
-    <Provider >
+    <Provider>
       <App />
     </Provider>,
     document.getElementById('root')
